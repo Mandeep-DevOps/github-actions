@@ -1,0 +1,20 @@
+name: Developer_Branch_CI
+on: [workflow_call]
+jobs:
+  CI_Steps:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Unit Tests
+        run: echo Unit Tests
+
+      - name: Integration Tests
+        run: echo Integration Tests
+
+      - name: Code Quality
+        run: echo Code Quality
+
+
+
