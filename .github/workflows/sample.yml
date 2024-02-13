@@ -1,25 +1,9 @@
-name: Reusable workflow example
-
+name: Reusable Workflow
 on: [push, pull_request]
-
 jobs:
-  common:
+  build:
     runs-on: self-hosted
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Unit Tests
-        run: echo Unit Tests
-
-      - name: Integration Tests
-        run: echo Integration Tests
-
-      - name: SAST Scans
-        run: echo SAST Scans
-
-      - name: Detect Secrets in Source Code
-        run: echo Detect Secrets in Source Code
-
-      - name: Code Quality
-        run: echo Code Quality
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: echo SAST Scans
