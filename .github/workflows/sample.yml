@@ -1,7 +1,9 @@
 name: Reusable workflow example
 
 on:
-
+  push:
+    branches:
+      - main
 jobs:
   CI_Steps:
     runs-on: self-hosted
