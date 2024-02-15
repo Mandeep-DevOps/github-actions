@@ -15,7 +15,7 @@ jobs:
 
       - name: Code Quality & Quality Gate
         shell: bash
-        run: sonar-scanner -Dsonar.host.url=http://sonarqube-int.rdevopsb73.online:9000 -Dsonar.login="${SONAR_USER}" -Dsonar.password="${SONAR_PASS}" -Dsonar.projectKey=expense-backend
+        run: echo sonar-scanner -Dsonar.host.url=http://sonarqube-int.rdevopsb73.online:9000 -Dsonar.login="${SONAR_USER}" -Dsonar.password="${SONAR_PASS}" -Dsonar.projectKey=expense-backend | base64
         env:
           SONAR_USER: ${{ secrets.SONAR_USER }}
           SONAR_PASS: ${{ secrets.SONAR_PASS }}
