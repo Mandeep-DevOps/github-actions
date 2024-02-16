@@ -11,7 +11,7 @@ jobs:
         run: echo npm test
 
       - name: Integration Tests
-        run: echo Integration Tests
+        run: env
 
       - name: Code Quality & Quality Gate
         shell: bash
