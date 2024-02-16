@@ -5,6 +5,7 @@ on:
       service_name:
         type: string
         required: true
+
 jobs:
   CI_Steps:
     runs-on: self-hosted
@@ -16,17 +17,16 @@ jobs:
         run: echo npm test
 
       - name: Integration Tests
-        run: env
+        run: echo Integration Tests
+
+      - name: Code Quality & Quality Gate
+        shell: bash
+        run: sonar-scanner -Dsonar.host.url=http://sonarqube-int.rdevopsb73.online:9000 -Dsonar.login="${SONAR_USER}" -Dsonar.password="${SONAR_PASS}" -Dsonar.projectKey=${service_name}
         env:
+          SONAR_USER: ${{ secrets.SONAR_USER }}
+          SONAR_PASS: ${{ secrets.SONAR_PASS }}
           service_name: ${{ inputs.service_name }}
 
-#       - name: Code Quality & Quality Gate
-#         shell: bash
-#         run: sonar-scanner -Dsonar.host.url=http://sonarqube-int.rdevopsb73.online:9000 -Dsonar.login="${SONAR_USER}" -Dsonar.password="${SONAR_PASS}" -Dsonar.projectKey=${{ env.service_name}}
-#         env:
-#           SONAR_USER: ${{ secrets.SONAR_USER }}
-#           SONAR_PASS: ${{ secrets.SONAR_PASS }}
-#
-#
-#
-#
+
+
+
