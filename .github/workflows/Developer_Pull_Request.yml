@@ -22,10 +22,16 @@ jobs:
         run: echo SAST Scans
 
       - name: Detect Secrets in Source Code
-        run: echo Detect Secrets in Source Code
+        run: echo ## trufflehog filesystem .
 
       - name: Code Quality
-        run: echo Code Quality
+        shell: bash
+        run: sonar-scanner -Dsonar.host.url=http://sonarqube-int.rdevopsb73.online:9000 -Dsonar.login="${SONAR_USER}" -Dsonar.password="${SONAR_PASS}" -Dsonar.projectKey=${service_name} -Dsonar.qualitygate.wait=true
+        env:
+          SONAR_USER: ${{ secrets.SONAR_USER }}
+          SONAR_PASS: ${{ secrets.SONAR_PASS }}
+          service_name: ${{ inputs.service_name }}
+
 
 
 
