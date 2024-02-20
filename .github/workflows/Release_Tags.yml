@@ -24,7 +24,7 @@ jobs:
       - name: Produce Artifact
         env:
           service_name: ${{ inputs.service_name }}
-          ARTIFACTORY_CREDENTIALS: ${{ secrets.SONAR_USER }}
+          ARTIFACTORY_CREDENTIALS: ${{ secrets.ARTIFACTORY_CREDENTIALS }}
         run: |
           npm install
           zip -r ${service_name}-${GITHUB_REF_NAME}.zip * -x .github
