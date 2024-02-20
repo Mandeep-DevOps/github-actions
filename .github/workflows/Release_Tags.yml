@@ -22,8 +22,13 @@ jobs:
         run: echo Detect Secrets in Source Code
 
       - name: Produce Artifact
+        env:
+          service_name: ${{ inputs.service_name }}
+          ARTIFACTORY_CREDENTIALS: ${{ secrets.SONAR_USER }}
         run: |
-          env
+          npm install
+          zip -r ${service_name}-${GITHUB_REF_NAME}.zip * -x .github
+          curl -v -X PUT -u ${ARTIFACTORY_CREDENTIALS} -T ${service_name}-${GITHUB_REF_NAME}.zip http://artifactory-int.rdevopsb73.online:8081/artifactory/${service_name}/${service_name}-${GITHUB_REF_NAME}.zip
 
 
 
